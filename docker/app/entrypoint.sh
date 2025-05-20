@@ -1,22 +1,16 @@
 #!/bin/bash
 
-# Wait for MySQL or other services (optional delay)
-sleep 5
+# Wait for MySQL and Redis to be up (optional for first-time setup)
+sleep 10
 
-# Install composer dependencies
+# Install dependencies
 composer install --no-interaction --prefer-dist --optimize-autoloader
 
-# Laravel setup
-php artisan config:clear
+# Setup Laravel
+php artisan key:generate
+php artisan migrate --force
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
-php artisan key:generate
-php artisan migrate --force
 
-# Set permissions (optional)
-chown -R www-data:www-data /var/www
-chmod -R 775 /var/www/storage /var/www/bootstrap/cache
-
-# Run php-fpm
-exec php-fpm
+exec "$@"
