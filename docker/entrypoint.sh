@@ -2,6 +2,10 @@
 
 cd /var/www
 
+if [ ! -f ".env" ]; then
+  cp .env.example .env
+fi
+
 composer install --no-interaction --prefer-dist
 
 cp .env.example .env
