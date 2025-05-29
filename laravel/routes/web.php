@@ -3,6 +3,7 @@
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
 
 Route::get('/', function () {
     Log::info('Welcome route accessed');
@@ -14,3 +15,9 @@ Route::get('/', function () {
     return User::all();
     return view('welcome');
 });
+
+
+Route::get('/test',[TestController::class,'index'])->name('test');
+
+
+
