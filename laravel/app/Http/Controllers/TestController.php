@@ -8,6 +8,6 @@ class TestController extends Controller
 {
     function index()
     {
-        return 'helsssleeo !ffffe';
+        return 'helsssleeo';
     }
 }
